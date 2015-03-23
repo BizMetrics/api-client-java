@@ -109,6 +109,7 @@ public class ApiInvoker {
       builder.header(key, headerParams.get(key));
     }
 
+
     for(String key : defaultHeaderMap.keySet()) {
       if(!headerParams.containsKey(key)) {
         builder.header(key, defaultHeaderMap.get(key));

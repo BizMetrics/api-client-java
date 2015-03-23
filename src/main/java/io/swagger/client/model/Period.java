@@ -3,6 +3,7 @@ package io.swagger.client.model;
 import io.swagger.client.model.PeriodType;
 import io.swagger.client.model.DurationFieldType;
 import java.util.*;
+import java.util.List;
 
 import com.wordnik.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class ApiplansApi {
-  String basePath = "http://localhost:9000/";
+    String basePath = "http://app.bizmetrics.io";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public ApiInvoker getInvoker() {
@@ -33,10 +33,14 @@ public class ApiplansApi {
     return basePath;
   }
 
+    public ApiplansApi(String basePath) {
+        super();
+        setBasePath(basePath);
+    }
   
     
-  public Void POST_controllers_api_Plans$_create (Plan ) throws ApiException {
-    Object postBody = ;
+    public Plan POST_controllers_api_Plans$_create(Plan plan) throws ApiException {
+        Object postBody = plan;
     
 
     // create path and map variables
@@ -69,7 +73,7 @@ public class ApiplansApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Void) ApiInvoker.deserialize(response, "", Void.class);
+                return (Plan) ApiInvoker.deserialize(response, "", Plan.class);
       }
       else {
         return null;
@@ -85,8 +89,8 @@ public class ApiplansApi {
   }
   
     
-  public Void POST_controllers_api_Plans$_createFromArray (Plan ) throws ApiException {
-    Object postBody = ;
+    public java.util.List<Plan> POST_controllers_api_Plans$_createFromArray(Collection<Plan> plans) throws ApiException {
+        Object postBody = plans;
     
 
     // create path and map variables
@@ -119,7 +123,7 @@ public class ApiplansApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Void) ApiInvoker.deserialize(response, "", Void.class);
+                return (java.util.List<Plan>) ApiInvoker.deserialize(response, "array", java.util.List.class);
       }
       else {
         return null;

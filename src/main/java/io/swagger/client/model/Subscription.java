@@ -1,6 +1,5 @@
 package io.swagger.client.model;
 
-import io.swagger.client.model.Status;
 import io.swagger.client.model.ExternalId;
 import io.swagger.client.model.Period;
 import io.swagger.client.model.Plan;
@@ -17,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @ApiModel(description = "")
 public class Subscription  {
   
+    public static enum Status {
+        ACTIVE, INACTIVE, EXPIRED, FAILED, CANCELLED, DELETED;
+    }
   private Date extActivationDate = null;
   private Date extEndDate = null;
   private Plan plan = null;
@@ -32,7 +34,6 @@ public class Subscription  {
   private Date canceledAt = null;
   private Status status = null;
   private Long id = null;
-  private Integer version = null;
   private ExternalId externalId = null;
   private Date extCreationInstant = null;
   private Date extLastModifiedInstant = null;
@@ -223,18 +224,6 @@ public class Subscription  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("version")
-  public Integer getVersion() {
-    return version;
-  }
-  public void setVersion(Integer version) {
-    this.version = version;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
   @JsonProperty("externalId")
   public ExternalId getExternalId() {
     return externalId;
@@ -313,7 +302,6 @@ public class Subscription  {
     sb.append("  canceledAt: ").append(canceledAt).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  id: ").append(id).append("\n");
-    sb.append("  version: ").append(version).append("\n");
     sb.append("  externalId: ").append(externalId).append("\n");
     sb.append("  extCreationInstant: ").append(extCreationInstant).append("\n");
     sb.append("  extLastModifiedInstant: ").append(extLastModifiedInstant).append("\n");

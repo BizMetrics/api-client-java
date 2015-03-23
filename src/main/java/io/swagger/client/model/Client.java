@@ -11,13 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  **/
 @ApiModel(description = "")
-public class Client  {
+public class Client implements ModelInterface {
   
   private String name = null;
   private String email = null;
   private String description = null;
   private Long id = null;
-  private Integer version = null;
   private ExternalId externalId = null;
   private Date extCreationInstant = null;
   private Date extLastModifiedInstant = null;
@@ -70,18 +69,6 @@ public class Client  {
   }
   public void setId(Long id) {
     this.id = id;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("version")
-  public Integer getVersion() {
-    return version;
-  }
-  public void setVersion(Integer version) {
-    this.version = version;
   }
 
   
@@ -155,7 +142,6 @@ public class Client  {
     sb.append("  email: ").append(email).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  id: ").append(id).append("\n");
-    sb.append("  version: ").append(version).append("\n");
     sb.append("  externalId: ").append(externalId).append("\n");
     sb.append("  extCreationInstant: ").append(extCreationInstant).append("\n");
     sb.append("  extLastModifiedInstant: ").append(extLastModifiedInstant).append("\n");

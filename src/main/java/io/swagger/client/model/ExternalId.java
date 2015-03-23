@@ -1,6 +1,5 @@
 package io.swagger.client.model;
 
-import io.swagger.client.model.Account;
 
 import com.wordnik.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,9 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ExternalId  {
   
   private String externalId = null;
-  private Account account = null;
 
   
+    public ExternalId() {
+        super();
+    }
+
+    public ExternalId(String externalId) {
+        this.externalId = externalId;
+    }
   /**
    **/
   @ApiModelProperty(required = false, value = "")
@@ -25,17 +30,6 @@ public class ExternalId  {
   }
 
   
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("account")
-  public Account getAccount() {
-    return account;
-  }
-  public void setAccount(Account account) {
-    this.account = account;
-  }
-
   
 
   @Override
@@ -44,7 +38,6 @@ public class ExternalId  {
     sb.append("class ExternalId {\n");
     
     sb.append("  externalId: ").append(externalId).append("\n");
-    sb.append("  account: ").append(account).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -1,10 +1,13 @@
 package io.swagger.client.model;
 
-import io.swagger.client.model.PlanState;
 import io.swagger.client.model.ExternalId;
 import io.swagger.client.model.Period;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import io.swagger.client.model.Subscription;
+
 import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
@@ -15,7 +18,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  **/
 @ApiModel(description = "")
-public class Plan  {
+public class Plan implements ModelInterface {
+    public static enum PlanState {
+        ACTIVE, INACTIVE;
+    }
   
   private List<Subscription> subscriptions = new ArrayList<Subscription>() ;
   private Integer amount = null;
@@ -24,8 +30,6 @@ public class Plan  {
   private Period planInterval = null;
   private PlanState state = null;
   private String name = null;
-  private Long id = null;
-  private Integer version = null;
   private ExternalId externalId = null;
   private Date extCreationInstant = null;
   private Date extLastModifiedInstant = null;
@@ -120,30 +124,6 @@ public class Plan  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
-  }
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("version")
-  public Integer getVersion() {
-    return version;
-  }
-  public void setVersion(Integer version) {
-    this.version = version;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
   @JsonProperty("externalId")
   public ExternalId getExternalId() {
     return externalId;
@@ -214,8 +194,6 @@ public class Plan  {
     sb.append("  planInterval: ").append(planInterval).append("\n");
     sb.append("  state: ").append(state).append("\n");
     sb.append("  name: ").append(name).append("\n");
-    sb.append("  id: ").append(id).append("\n");
-    sb.append("  version: ").append(version).append("\n");
     sb.append("  externalId: ").append(externalId).append("\n");
     sb.append("  extCreationInstant: ").append(extCreationInstant).append("\n");
     sb.append("  extLastModifiedInstant: ").append(extLastModifiedInstant).append("\n");
