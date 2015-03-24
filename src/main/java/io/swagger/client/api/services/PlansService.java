@@ -10,13 +10,13 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.joda.time.Period;
 
 import io.swagger.client.ApiException;
 import io.swagger.client.api.ApiclientsApi;
 import io.swagger.client.api.ApiplansApi;
 import io.swagger.client.model.Client;
 import io.swagger.client.model.ExternalId;
-import io.swagger.client.model.Period;
 import io.swagger.client.model.Plan;
 import io.swagger.client.model.Plan.PlanState;
 

@@ -1,10 +1,12 @@
 package io.swagger.client.model;
 
 import io.swagger.client.model.ExternalId;
-import io.swagger.client.model.Period;
 import io.swagger.client.model.Plan;
 import io.swagger.client.model.Client;
+
 import java.util.Date;
+
+import org.joda.time.Period;
 
 import com.wordnik.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
