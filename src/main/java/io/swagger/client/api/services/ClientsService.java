@@ -14,18 +14,18 @@ import io.swagger.client.api.ApiclientsApi;
 import io.swagger.client.model.Client;
 import io.swagger.client.model.ExternalId;
 
-public class ClientService extends Service {
+public class ClientsService extends Service {
     final ApiclientsApi api;
 
-    ClientService(ApiclientsApi api) {
+    ClientsService(ApiclientsApi api) {
         this.api = api;
 
     }
 
-    public static ClientService getInstance(String baseUrl) {
+    public static ClientsService getInstance(String baseUrl) {
         //TODO make this configurable
         ApiclientsApi apiclientsApi = new ApiclientsApi(baseUrl);
-        return new ClientService(apiclientsApi);
+        return new ClientsService(apiclientsApi);
     }
 
     public Client createClient(String name, String email, String description, String extId, DateTime creationInstant,

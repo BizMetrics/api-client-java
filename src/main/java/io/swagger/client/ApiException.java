@@ -1,10 +1,20 @@
 package io.swagger.client;
 
 public class ApiException extends Exception {
-  int code = 0;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    int code = 0;
   String message = null;
 
-  public ApiException() {}
+    public ApiException() {
+        super();
+    }
+
+    public ApiException(Throwable t) {
+        super(t);
+    }
 
   public ApiException(int code, String message) {
     this.code = code;

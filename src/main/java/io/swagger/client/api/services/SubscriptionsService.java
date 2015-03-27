@@ -10,20 +10,21 @@ import io.swagger.client.ApiException;
 import io.swagger.client.api.ApisubscriptionsApi;
 import io.swagger.client.model.ExternalId;
 import io.swagger.client.model.Subscription;
+import io.swagger.client.model.SubscriptionStatusChange;
 import io.swagger.client.model.Subscription.Status;
 
-public class SubscriptionService extends Service {
+public class SubscriptionsService extends Service {
 
     final ApisubscriptionsApi api;
 
-    SubscriptionService(ApisubscriptionsApi api) {
+    SubscriptionsService(ApisubscriptionsApi api) {
         this.api = api;
     }
 
-    public static SubscriptionService getInstance(String baseUrl) {
+    public static SubscriptionsService getInstance(String baseUrl) {
         //TODO make this configurable
         ApisubscriptionsApi apisubscriptionsApi = new ApisubscriptionsApi(baseUrl);
-        return new SubscriptionService(apisubscriptionsApi);
+        return new SubscriptionsService(apisubscriptionsApi);
     }
 
     public Subscription createSubscription(DateTime extActivationDate, DateTime extEndDate, String name, Period subsInterval,
@@ -66,6 +67,18 @@ public class SubscriptionService extends Service {
         subscription.setExtLastModifiedInstant(extLastModifiedInstant == null ? null : extLastModifiedInstant.toDate());
 
         return api.POST_controllers_api_Subscriptions$_createSubscription(subscription);
+    }
+
+    public Subscription changeStatus(Status newStatus, DateTime dateOfChange, boolean force, String extIdSubscriptionToChange)
+            throws ApiException {
+        checkNotNull(newStatus);
+        checkNotNull(dateOfChange);
+        checkNotNull(extIdSubscriptionToChange);
+        SubscriptionStatusChange subscriptionStatusChange = new SubscriptionStatusChange();
+        subscriptionStatusChange.setNewStatus(newStatus);
+        subscriptionStatusChange.setDateOfChange(dateOfChange.toDate());
+        subscriptionStatusChange.setForce(force);
+        return api.PUT_controllers_api_Subscriptions$_changeStatus(subscriptionStatusChange, extIdSubscriptionToChange);
     }
 
 
