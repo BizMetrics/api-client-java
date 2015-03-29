@@ -35,7 +35,8 @@ public class PlansService extends Service {
     }
 
     public Plan createPlan(String extId, Integer amount, String currency, String metaDescription, Period planInterval,
-            PlanState state, String name, DateTime extCreationInstant, DateTime extLastModifiedInstant) throws ApiException {
+            PlanState state, String name, DateTime extCreationInstant, DateTime extLastModifiedInstant,
+            Map<String, String> classifiers) throws ApiException {
         checkNotNull(extId);
         checkNotNull(amount);
         checkArgument(amount > 0);
@@ -46,6 +47,7 @@ public class PlansService extends Service {
         DateTime timeOfLastModification = extLastModifiedInstant == null ? extCreationInstant : extLastModifiedInstant;
 
         Plan plan = new Plan();
+        plan.setClassifiers(classifiers);
         plan.setExternalId(new ExternalId(extId));
         plan.setAmount(amount);
         plan.setCurrency(currency);

@@ -4,9 +4,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+
 import org.joda.time.DateTime;
-
-
 import org.joda.time.DateTime;
 
 import io.swagger.client.ApiException;
@@ -29,11 +29,12 @@ public class ClientsService extends Service {
     }
 
     public Client createClient(String name, String email, String description, String extId, DateTime creationInstant,
-            DateTime modificationTime) throws ApiException {
+            DateTime modificationTime, Map<String, String> classifiers) throws ApiException {
         checkNotNull(creationInstant);
         checkNotNull(extId);
         Client client = new Client();
         client.setName(name);
+        client.setClassifiers(classifiers);
         client.setEmail(email);
         client.setDescription(description);
         client.setExternalId(new ExternalId(extId));

@@ -3,6 +3,7 @@ package io.swagger.client.model;
 import io.swagger.client.model.ExternalId;
 
 import java.util.Date;
+import java.util.Map;
 
 import org.joda.time.Period;
 
@@ -14,11 +15,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  **/
 @ApiModel(description = "")
-public class Subscription  {
+public class Subscription implements ModelInterface {
   
     public static enum Status {
-        ACTIVE, INACTIVE, EXPIRED, FAILED, CANCELLED, DELETED;
-    }
+                ACTIVE, INACTIVE, EXPIRED, FAILED, CANCELLED, DELETED;
+            }
   private Date extActivationDate = null;
   private Date extEndDate = null;
   private String name = null;
@@ -28,6 +29,7 @@ public class Subscription  {
   private Status status = null;
   private String clientId = null;
   private String planId = null;
+    private Map<String, String> classifiers = null;
   private ExternalId externalId = null;
   private Date extCreationInstant = null;
   private Date extLastModifiedInstant = null;
@@ -144,6 +146,19 @@ public class Subscription  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  @JsonProperty("classifiers")
+    public Map<String, String> getClassifiers() {
+    return classifiers;
+  }
+
+    public void setClassifiers(Map<String, String> classifiers) {
+    this.classifiers = classifiers;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   @JsonProperty("externalId")
   public ExternalId getExternalId() {
     return externalId;
@@ -192,6 +207,7 @@ public class Subscription  {
     sb.append("  status: ").append(status).append("\n");
     sb.append("  clientId: ").append(clientId).append("\n");
     sb.append("  planId: ").append(planId).append("\n");
+    sb.append("  classifiers: ").append(classifiers).append("\n");
     sb.append("  externalId: ").append(externalId).append("\n");
     sb.append("  extCreationInstant: ").append(extCreationInstant).append("\n");
     sb.append("  extLastModifiedInstant: ").append(extLastModifiedInstant).append("\n");

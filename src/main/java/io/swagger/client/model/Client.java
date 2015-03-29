@@ -1,7 +1,9 @@
 package io.swagger.client.model;
 
 import io.swagger.client.model.ExternalId;
+
 import java.util.Date;
+import java.util.Map;
 
 import com.wordnik.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,12 +18,10 @@ public class Client implements ModelInterface {
   private String name = null;
   private String email = null;
   private String description = null;
-  private Long id = null;
+    private Map<String, String> classifiers = null;
   private ExternalId externalId = null;
   private Date extCreationInstant = null;
   private Date extLastModifiedInstant = null;
-  private Date creationInstant = null;
-  private Date lastModifiedInstant = null;
 
   
   /**
@@ -63,12 +63,13 @@ public class Client implements ModelInterface {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
+  @JsonProperty("classifiers")
+    public Map<String, String> getClassifiers() {
+    return classifiers;
   }
-  public void setId(Long id) {
-    this.id = id;
+
+    public void setClassifiers(Map<String, String> classifiers) {
+    this.classifiers = classifiers;
   }
 
   
@@ -108,30 +109,6 @@ public class Client implements ModelInterface {
   }
 
   
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("creationInstant")
-  public Date getCreationInstant() {
-    return creationInstant;
-  }
-  public void setCreationInstant(Date creationInstant) {
-    this.creationInstant = creationInstant;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("lastModifiedInstant")
-  public Date getLastModifiedInstant() {
-    return lastModifiedInstant;
-  }
-  public void setLastModifiedInstant(Date lastModifiedInstant) {
-    this.lastModifiedInstant = lastModifiedInstant;
-  }
-
-  
 
   @Override
   public String toString()  {
@@ -141,12 +118,10 @@ public class Client implements ModelInterface {
     sb.append("  name: ").append(name).append("\n");
     sb.append("  email: ").append(email).append("\n");
     sb.append("  description: ").append(description).append("\n");
-    sb.append("  id: ").append(id).append("\n");
+    sb.append("  classifiers: ").append(classifiers).append("\n");
     sb.append("  externalId: ").append(externalId).append("\n");
     sb.append("  extCreationInstant: ").append(extCreationInstant).append("\n");
     sb.append("  extLastModifiedInstant: ").append(extLastModifiedInstant).append("\n");
-    sb.append("  creationInstant: ").append(creationInstant).append("\n");
-    sb.append("  lastModifiedInstant: ").append(lastModifiedInstant).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

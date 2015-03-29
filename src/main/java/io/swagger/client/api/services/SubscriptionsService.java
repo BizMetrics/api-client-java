@@ -3,6 +3,8 @@ package io.swagger.client.api.services;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Map;
+
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
@@ -29,7 +31,7 @@ public class SubscriptionsService extends Service {
 
     public Subscription createSubscription(DateTime extActivationDate, DateTime extEndDate, String name, Period subsInterval,
             Integer amount, DateTime canceledAt, Status status, String clientId, String planId, String extId,
-            DateTime extCreationInstant, DateTime extLastModifiedInstant) throws ApiException {
+            DateTime extCreationInstant, DateTime extLastModifiedInstant, Map<String, String> classifiers) throws ApiException {
         checkNotNull(status);
         checkNotNull(extCreationInstant);
         checkNotNull(extId);
@@ -52,6 +54,7 @@ public class SubscriptionsService extends Service {
         checkArgument(amount == null || amount >= 0, "We currently do not suppot negative amounts");
 
         Subscription subscription = new Subscription();
+        subscription.setClassifiers(classifiers);
         subscription.setStatus(status);
         subscription.setExtCreationInstant(extCreationInstant.toDate());
         subscription.setExternalId(new ExternalId(extId));

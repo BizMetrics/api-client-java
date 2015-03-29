@@ -2,7 +2,7 @@ package io.swagger.client.model;
 
 import io.swagger.client.model.ExternalId;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 import io.swagger.client.model.Subscription;
@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  **/
 @ApiModel(description = "")
 public class Plan implements ModelInterface {
+
     public static enum PlanState {
         ACTIVE, INACTIVE;
     }
@@ -31,11 +32,10 @@ public class Plan implements ModelInterface {
   private Period planInterval = null;
   private PlanState state = null;
   private String name = null;
+  private Map<String,String> classifiers = null;
   private ExternalId externalId = null;
   private Date extCreationInstant = null;
   private Date extLastModifiedInstant = null;
-  private Date creationInstant = null;
-  private Date lastModifiedInstant = null;
 
   
   /**
@@ -125,6 +125,18 @@ public class Plan implements ModelInterface {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  @JsonProperty("classifiers")
+  public Map<String,String> getClassifiers() {
+    return classifiers;
+  }
+  public void setClassifiers(Map<String,String> classifiers) {
+    this.classifiers = classifiers;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   @JsonProperty("externalId")
   public ExternalId getExternalId() {
     return externalId;
@@ -158,30 +170,6 @@ public class Plan implements ModelInterface {
   }
 
   
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("creationInstant")
-  public Date getCreationInstant() {
-    return creationInstant;
-  }
-  public void setCreationInstant(Date creationInstant) {
-    this.creationInstant = creationInstant;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("lastModifiedInstant")
-  public Date getLastModifiedInstant() {
-    return lastModifiedInstant;
-  }
-  public void setLastModifiedInstant(Date lastModifiedInstant) {
-    this.lastModifiedInstant = lastModifiedInstant;
-  }
-
-  
 
   @Override
   public String toString()  {
@@ -195,11 +183,10 @@ public class Plan implements ModelInterface {
     sb.append("  planInterval: ").append(planInterval).append("\n");
     sb.append("  state: ").append(state).append("\n");
     sb.append("  name: ").append(name).append("\n");
+    sb.append("  classifiers: ").append(classifiers).append("\n");
     sb.append("  externalId: ").append(externalId).append("\n");
     sb.append("  extCreationInstant: ").append(extCreationInstant).append("\n");
     sb.append("  extLastModifiedInstant: ").append(extLastModifiedInstant).append("\n");
-    sb.append("  creationInstant: ").append(creationInstant).append("\n");
-    sb.append("  lastModifiedInstant: ").append(lastModifiedInstant).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
