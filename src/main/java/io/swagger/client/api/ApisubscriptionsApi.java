@@ -9,6 +9,7 @@ import java.util.*;
 import io.swagger.client.model.Subscription;
 import io.swagger.client.model.SubscriptionStatusChange;
 
+import com.sun.jersey.core.util.Base64;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 import javax.ws.rs.core.MediaType;
@@ -24,6 +25,9 @@ import java.util.HashMap;
 public class ApisubscriptionsApi {
   String basePath = "http://localhost:9000/";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
+
+    String username;
+    String password;
 
   public ApiInvoker getInvoker() {
     return apiInvoker;
@@ -76,6 +80,7 @@ public class ApisubscriptionsApi {
     }
 
     try {
+
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
                 return (Subscription) ApiInvoker.deserialize(response, "", Subscription.class);
