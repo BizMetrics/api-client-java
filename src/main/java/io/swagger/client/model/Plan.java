@@ -25,7 +25,6 @@ public class Plan implements ModelInterface {
         ACTIVE, INACTIVE;
     }
   
-  private List<Subscription> subscriptions = new ArrayList<Subscription>() ;
   private Integer amount = null;
   private String currency = null;
   private String metaDescription = null;
@@ -38,17 +37,6 @@ public class Plan implements ModelInterface {
   private Date extLastModifiedInstant = null;
 
   
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  @JsonProperty("subscriptions")
-  public List<Subscription> getSubscriptions() {
-    return subscriptions;
-  }
-  public void setSubscriptions(List<Subscription> subscriptions) {
-    this.subscriptions = subscriptions;
-  }
-
   
   /**
    **/
@@ -176,7 +164,6 @@ public class Plan implements ModelInterface {
     StringBuilder sb = new StringBuilder();
     sb.append("class Plan {\n");
     
-    sb.append("  subscriptions: ").append(subscriptions).append("\n");
     sb.append("  amount: ").append(amount).append("\n");
     sb.append("  currency: ").append(currency).append("\n");
     sb.append("  metaDescription: ").append(metaDescription).append("\n");
