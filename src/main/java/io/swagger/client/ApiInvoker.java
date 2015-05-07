@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonGenerator.Feature;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.config.ClientConfig;
@@ -20,6 +19,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URLEncoder;
 import java.io.UnsupportedEncodingException;
 
@@ -28,6 +28,7 @@ public class ApiInvoker {
   private Map<String, Client> hostMap = new HashMap<String, Client>();
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private boolean isDebug = false;
+    private PrintStream printStreamForLogging;
 
   public void enableDebug() {
     isDebug = true;
@@ -184,8 +185,19 @@ public class ApiInvoker {
       Client client = Client.create();
       if(isDebug)
         client.addFilter(new LoggingFilter());
+            if (getPrintStreamForLogging() != null) {
+                client.addFilter(new LoggingFilter(getPrintStreamForLogging()));
+            }
       hostMap.put(host, client);
     }
     return hostMap.get(host);
   }
+
+    public PrintStream getPrintStreamForLogging() {
+        return printStreamForLogging;
+    }
+
+    public void setPrintStreamForLogging(PrintStream printStreamForLogging) {
+        this.printStreamForLogging = printStreamForLogging;
+    }
 }
