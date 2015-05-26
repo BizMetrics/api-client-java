@@ -124,7 +124,7 @@ public class ApiclientsApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-                return (List<Client>) ApiInvoker.deserialize(response, "array", List.class);
+                return (List<Client>) ApiInvoker.deserialize(response, "array", Client.class);
       }
       else {
         return null;

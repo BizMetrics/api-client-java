@@ -123,7 +123,7 @@ public class ApiplansApi {
     try {
       String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-                return (java.util.List<Plan>) ApiInvoker.deserialize(response, "array", java.util.List.class);
+                return (java.util.List<Plan>) ApiInvoker.deserialize(response, "array", Plan.class);
       }
       else {
         return null;
