@@ -14,6 +14,9 @@ import com.sun.jersey.client.urlconnection.HTTPSProperties;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
 import javax.ws.rs.core.Response.Status.Family;
 import javax.ws.rs.core.MediaType;
 
@@ -168,30 +171,10 @@ public class ApiInvoker {
         }
     }
 
-    private boolean trustAll;
 
     private Client getClient(String host) {
         if (!hostMap.containsKey(host)) {
-            Client client = null;
-            if (isTrustAll()) {
-                ClientConfig config = new DefaultClientConfig();
-                try {
-                    config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES,
-                            new HTTPSProperties(new HostnameVerifier() {
-                                @Override
-                                public boolean verify(String s, SSLSession sslSession) {
-                                    return true;
-                                }
-                            }));
-                } catch (NoSuchAlgorithmException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                client = Client.create(config);
-            } else {
-                client = Client.create();
-
-            }
+            Client client = Client.create();
             if (isDebug)
                 client.addFilter(new LoggingFilter());
             if (getPrintStreamForLogging() != null) {
@@ -210,11 +193,5 @@ public class ApiInvoker {
         this.printStreamForLogging = printStreamForLogging;
     }
 
-    public boolean isTrustAll() {
-        return trustAll;
-    }
 
-    public void setTrustAll(boolean trustAll) {
-        this.trustAll = trustAll;
-    }
 }
